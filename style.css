@@ -640,3 +640,35 @@ html[data-theme="dark"] .houseboard-topline{
   .role-buttons-clean{grid-template-columns:1fr;}
   .mobile-jump-nav{top:62px;}
 }
+
+
+/* v20: clearer theme toggle icon only; light mode is the first-visit default. */
+.theme-toggle{
+  min-width:44px;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.theme-dot{display:none!important;}
+.theme-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;
+  height:22px;
+  font-size:1.18rem;
+  line-height:1;
+  flex:0 0 auto;
+}
+@media(max-width:900px){
+  .theme-toggle{
+    width:42px;
+    height:42px;
+    min-width:42px;
+    min-height:42px;
+    padding:0!important;
+  }
+  .theme-icon{font-size:1.16rem;}
+}

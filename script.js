@@ -1,16 +1,32 @@
 const root = document.documentElement;
 const toggle = document.querySelector('.theme-toggle');
 const label = document.querySelector('.theme-label');
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) root.setAttribute('data-theme', savedTheme);
-function setLabel(){ label.textContent = root.getAttribute('data-theme') === 'dark' ? 'Dark' : 'Light'; }
-setLabel();
-toggle.addEventListener('click', () => {
-  const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
-  setLabel();
-});
+const icon = document.querySelector('.theme-icon');
+
+function applyTheme(theme){
+  const selectedTheme = theme === 'dark' ? 'dark' : 'light';
+  root.setAttribute('data-theme', selectedTheme);
+  localStorage.setItem('theme', selectedTheme);
+
+  const isDark = selectedTheme === 'dark';
+  if (icon) icon.textContent = isDark ? '🔆' : '🌙';
+  if (label) label.textContent = isDark ? 'Light' : 'Dark';
+  if (toggle){
+    const text = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    toggle.setAttribute('aria-label', text);
+    toggle.setAttribute('title', text);
+  }
+}
+
+// First visit opens in light mode. Existing visitors keep their saved choice.
+applyTheme(localStorage.getItem('theme') || 'light');
+
+if (toggle){
+  toggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') || 'light';
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+}
 const menu = document.querySelector('.menu-toggle');
 const links = document.querySelector('#navLinks');
 menu.addEventListener('click', () => {
