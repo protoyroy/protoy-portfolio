@@ -1,1 +1,0 @@
-Protoy Kumar Roy data science portfolio website. Includes CV download, UCL Tactical Decision Room link, HouseBoard live platform link, professional photos, awards, skills, education, experience, certifications, and contact details.
